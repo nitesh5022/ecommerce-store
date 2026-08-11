@@ -1,6 +1,9 @@
 import { useState } from "react";
 import ProductCard from "../components/ProductCard";
 import products from "../data/products";
+import CategoryBar from "../components/CategoryBar";
+import HeroBanner from "../components/HeroBanner";
+import Deals from "../components/Deals";
 
 const Products = () => {
   const [search, setSearch] = useState("");
@@ -10,16 +13,13 @@ const Products = () => {
 
   // Filter Products
   const filteredProducts = products.filter((item) => {
-    // Search
     const matchSearch = item.name
       .toLowerCase()
       .includes(search.toLowerCase());
 
-    // Category
     const matchCategory =
       category === "All" || item.category === category;
 
-    // Price
     let matchPrice = true;
 
     if (priceRange === "0-5000") {
@@ -43,7 +43,7 @@ const Products = () => {
     );
   });
 
-  // Sort Products
+  // Sorting
   const sortedProducts = [...filteredProducts];
 
   if (sortOrder === "low-high") {
@@ -67,18 +67,18 @@ const Products = () => {
   }
 
   return (
-    <div className="bg-gray-100 min-h-screen">
+    <div className="w-full min-h-screen bg-gray-100">
 
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-blue-700 via-blue-600 to-cyan-500 text-white py-14">
+      <div className="w-full bg-gradient-to-r from-blue-700 via-blue-600 to-cyan-500 py-20">
 
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="w-full text-center px-6">
 
-          <h1 className="text-5xl font-bold">
+          <h1 className="text-6xl font-bold text-white">
             Our Products
           </h1>
 
-          <p className="mt-3 text-lg text-blue-100">
+          <p className="mt-4 text-xl text-blue-100">
             Discover premium gadgets with amazing offers.
           </p>
 
@@ -87,30 +87,26 @@ const Products = () => {
       </div>
 
       {/* Filters */}
-      <div className="max-w-7xl mx-auto px-6 -mt-10">
+      <div className="w-full px-10 -mt-10">
 
-        <div className="bg-white rounded-2xl shadow-lg p-6">
+        <div className="bg-white rounded-3xl shadow-xl p-8">
 
-          <div className="grid md:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
 
             {/* Search */}
             <input
               type="text"
               placeholder="Search Products..."
               value={search}
-              onChange={(e) =>
-                setSearch(e.target.value)
-              }
-              className="border rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
+              onChange={(e) => setSearch(e.target.value)}
+              className="border rounded-xl px-5 py-4 outline-none focus:ring-2 focus:ring-blue-500"
             />
 
             {/* Category */}
             <select
               value={category}
-              onChange={(e) =>
-                setCategory(e.target.value)
-              }
-              className="border rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
+              onChange={(e) => setCategory(e.target.value)}
+              className="border rounded-xl px-5 py-4 outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option>All</option>
               <option>Mobile</option>
@@ -123,55 +119,26 @@ const Products = () => {
             {/* Price */}
             <select
               value={priceRange}
-              onChange={(e) =>
-                setPriceRange(e.target.value)
-              }
-              className="border rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
+              onChange={(e) => setPriceRange(e.target.value)}
+              className="border rounded-xl px-5 py-4 outline-none focus:ring-2 focus:ring-blue-500"
             >
-              <option value="All">
-                All Prices
-              </option>
-
-              <option value="0-5000">
-                ₹0 - ₹5,000
-              </option>
-
-              <option value="5001-50000">
-                ₹5,001 - ₹50,000
-              </option>
-
-              <option value="50001+">
-                ₹50,001+
-              </option>
+              <option value="All">All Prices</option>
+              <option value="0-5000">₹0 - ₹5,000</option>
+              <option value="5001-50000">₹5,001 - ₹50,000</option>
+              <option value="50001+">₹50,001+</option>
             </select>
 
             {/* Sort */}
             <select
               value={sortOrder}
-              onChange={(e) =>
-                setSortOrder(e.target.value)
-              }
-              className="border rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
+              onChange={(e) => setSortOrder(e.target.value)}
+              className="border rounded-xl px-5 py-4 outline-none focus:ring-2 focus:ring-blue-500"
             >
-              <option value="">
-                Sort By
-              </option>
-
-              <option value="low-high">
-                Price : Low to High
-              </option>
-
-              <option value="high-low">
-                Price : High to Low
-              </option>
-
-              <option value="a-z">
-                Name : A-Z
-              </option>
-
-              <option value="z-a">
-                Name : Z-A
-              </option>
+              <option value="">Sort By</option>
+              <option value="low-high">Price : Low to High</option>
+              <option value="high-low">Price : High to Low</option>
+              <option value="a-z">Name : A-Z</option>
+              <option value="z-a">Name : Z-A</option>
             </select>
 
           </div>
@@ -181,20 +148,18 @@ const Products = () => {
       </div>
 
       {/* Product Count */}
-      <div className="max-w-7xl mx-auto px-6 mt-8">
+      <div className="w-full px-10 mt-10">
 
-        <h2 className="text-2xl font-bold text-gray-700">
-
+        <h2 className="text-3xl font-bold text-gray-700">
           {sortedProducts.length} Products Found
-
         </h2>
 
       </div>
 
       {/* Products */}
-      <div className="max-w-7xl mx-auto px-6 py-10">
+      <div className="w-full px-10 py-10">
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
 
           {sortedProducts.length > 0 ? (
 
@@ -218,7 +183,7 @@ const Products = () => {
 
           ) : (
 
-            <div className="col-span-3 text-center py-20">
+            <div className="col-span-5 text-center py-20">
 
               <h2 className="text-3xl font-bold text-gray-500">
                 No Product Found 😔

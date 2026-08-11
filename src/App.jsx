@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Wishlist from "./pages/Wishlist";
+import CategoryBar from "./components/CategoryBar";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -15,6 +16,9 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar />
+      
+      <CategoryBar />
+    
 
       <Routes>
         <Route path="/" element={<Home />} />
