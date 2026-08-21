@@ -5,6 +5,7 @@ import CategoryBar from "./components/CategoryBar";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
+import Checkout from "./pages/Checkout";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
 import ProductDetails from "./pages/ProductDetails";
@@ -28,6 +29,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/login" element={<Login />} />
         <Route path="/about" element={<About />} />
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
 
       <Footer />
